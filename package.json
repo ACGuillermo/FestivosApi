@@ -1,0 +1,29 @@
+{
+  "name": "festivosapi",
+  "version": "1.0.0",
+  "description": "Api festivos españa",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ACGuillermo/FestivosApi.git"
+  },
+  "author": "Guillermo Aguilar cerrejon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ACGuillermo/FestivosApi/issues"
+  },
+  "homepage": "https://github.com/ACGuillermo/FestivosApi#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.1.0",
+    "morgan": "^1.10.0"
+  }
+}
