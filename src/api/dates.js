@@ -2,17 +2,17 @@ const express = require('express');
 
 const router = express.Router();
 
-// Todos los festivos de todos los municipios.
+// Todos los municipios de todos los festivos.
 router.get('/', (req, res, next) => {
     res.json({
         message: "hello municipios"
     })
 });
 
-// Todos los festivos de un municipio.
-router.get('/:municipio', (req, res, next) => {
+// Todos los municipios donde es fiesta en una fecha.
+router.get('/:date', (req, res, next) => {
     res.json({
-        message: req.params.municipio
+        message: req.params.date
     })
 })
 
