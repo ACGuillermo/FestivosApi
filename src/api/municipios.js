@@ -1,0 +1,12 @@
+const express = require('express');
+
+const router = express.Router();
+
+// Todos los festivos de todos los municipios.
+router.get('/', (req, res, next) => {
+    res.json({
+        message: "hello municipios"
+    })
+});
+
+module.exports = router;
