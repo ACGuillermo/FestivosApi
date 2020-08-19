@@ -4,6 +4,7 @@ const router = express.Router();
 
 const municipios = require('./municipios');
 const ccaa = require('./ccaa');
+const fechas = require('./dates')
 
 // API entry point
 router.get('/', (req, res) => {
@@ -14,5 +15,6 @@ router.get('/', (req, res) => {
 
 router.use('/municipios', municipios);
 router.use('/ccaa', ccaa);
+router.use('/fechas', fechas)
 
 module.exports = router;
