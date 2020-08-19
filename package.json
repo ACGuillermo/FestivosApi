@@ -4,6 +4,7 @@
   "description": "Api festivos españa",
   "main": "src/index.js",
   "scripts": {
+    "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
   "repository": {
@@ -20,10 +21,11 @@
     "nodemon": "^2.0.4"
   },
   "dependencies": {
-    "dotenv": "^8.2.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.1.0",
+    "monk": "^7.3.1",
     "morgan": "^1.10.0"
   }
 }
