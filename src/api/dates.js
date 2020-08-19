@@ -2,12 +2,8 @@ const express = require('express');
 const monk = require('monk');
 
 // DB
-try {
-    const db = monk(process.env.MONGO_URI);
-    const fechas = db.get('fechas');
-} catch (error) {
-    next(error)
-}
+const db = monk(process.env.MONGO_URI);
+const fechas = db.get('fechas');
 
 // Loca cache - Not persistent
 const datesCache = new Map();

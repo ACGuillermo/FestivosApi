@@ -2,12 +2,8 @@ const express = require('express');
 const monk = require('monk');
 
 // DB
-try {
-    const db = monk(process.env.MONGO_URI);
+const db = monk(process.env.MONGO_URI);
 const municipios = db.get('municipios');
-} catch (error) {
-    next(error)
-}
 
 // Loca cache - Not persistent
 const municipiosCache = new Map();
