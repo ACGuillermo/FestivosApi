@@ -1,5 +1,6 @@
 const express = require('express');
 const monk = require('monk');
+const { DateTime } = require("luxon");
 
 // DB
 const db = monk(process.env.MONGO_URI);
@@ -26,7 +27,11 @@ router.get('/', async(req, res, next) => {
 
 // Todos los festivos de un municipio.
 router.get('/:municipio', async(req, res, next) => {
-    const {municipio} = req.params;
+    let {municipio} = req.params;
+    municipio = municipio.replace(/_/g, ' ')
+
+    console.log(municipio);
+
     if(municipiosCache.has(municipio)) return res.json(municipiosCache.get(municipio).festivos)
     try {
         const item = await municipios.findOne({name: municipio})
@@ -35,6 +40,31 @@ router.get('/:municipio', async(req, res, next) => {
         res.json(item.festivos)
         municipiosCache.set(municipio, item)
         db.close()
+    } catch (error) {
+        next(error)
+    }
+})
+
+// Siguiente festivo de un municipio, dando la fecha inicial.
+router.get('/:municipio/:fecha', async(req, res, next) => {
+    const {fecha} = req.params
+    let {municipio} = req.params
+    municipio = municipio.replace(/_/g, ' ')
+    
+    try {
+        const item = await municipios.findOne({name: municipio})
+
+        if (!item) return next()
+
+        const nextFestivo = item.festivos.find(f => {
+            const dateNextFestivo = DateTime.fromISO(f);
+            const dateClient = DateTime.fromISO(fecha)
+            const diffDates = dateClient.diff(dateNextFestivo, ['months', 'days'])
+
+            if(diffDates.months === 0 && diffDates.days === 0) return f
+            else if(dateNextFestivo > dateClient) return f
+        })
+        res.json(nextFestivo)
     } catch (error) {
         next(error)
     }
