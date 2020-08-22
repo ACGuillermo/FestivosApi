@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    
     <title>Document</title>
 </head>
 <body class="bg-gray-200">
@@ -44,9 +43,16 @@
                 </svg>
             </div>
             <div class="bg-white rounded-b-md pb-10">
-                <p class="text-center text-gray-600 text-lg pt-2">Today is holiday in...</p>
-                <p class="text-center text-gray-800 font-bold text-xl">Adra, Barcelona, Herrera</p>
-                <p class="text-center text-teal-500 underline">And 328 more...</p>
+                <p class="text-center text-gray-600 text-lg pt-2"><%=data.dateFormatted%> is holiday in... </p>
+                <p class="text-center text-gray-800 font-bold text-xl break-words">
+                    <%= data.municipios %>
+                </p>
+                <%if(data.leftOnes){ %>
+                    <p class="text-center text-teal-500 underline mt-4">
+                        <a href="http://localhost:1337/api/fechas/<%=data.date.replace('T00:00', '')%>">And <%= data.leftOnes %> more...</a>
+                    </p>
+                <%}%>
+                
             </div>
         </section>
         <!--DOCUMENTATION-->
