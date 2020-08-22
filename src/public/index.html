@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body class="bg-gray-200">
+    <!--HEADER-->
     <header class="bg-gray-800 w-full">
         <nav class="w-full mx-auto">
             <div class="flex items-center pl-4 pt-1">
@@ -32,7 +33,9 @@
             </div>
         </div>
     </header>
+    <!--MAIN CONTENT-->
     <main class="w-5/6 md:w-2/4 -mt-16 mx-auto">
+        <!--DATE CARD SECTION-->
         <section>
             <div class="bg-gray-300 rounded-t-md pb-4">
                 <div class="pt-4"></div>
@@ -46,12 +49,13 @@
                 <p class="text-center text-teal-500 underline">And 328 more...</p>
             </div>
         </section>
-        <h2 class="text-gray-700 text-4xl font-bold mt-6">Documentation</h2>
-        <section class="mt-6">
-            <h2 class="text-gray-700 text-3xl">Introduction</h2>
+        <!--DOCUMENTATION-->
+        <section class="mt-12">
+            <h2 class="text-gray-700 text-4xl font-bold">Documentation</h2>
+            <h2 class="text-gray-700 text-3xl mt-2">Introduction</h2>
             <p class="text-gray-700">Welcome to Festivos API! This documentation should help you familiarise yourself with the resources available and how to consume them with HTTP requests.</p>
         </section>
-        <section class="mt-10">
+        <section class="mt-8">
             <h2 class="text-gray-700 text-3xl">Getting started</h2>
             <p class="text-gray-700">Open up a terminal and use <a href="" class="underline text-teal-400">curl</a> to make an API request for a resource. In the next example we are trying to get all the holidays of Barcelona:</p>
             <div class="bg-gray-300 rounded-md mt-4">
@@ -79,16 +83,65 @@
 }
 </pre>
         </section>
-        <section class="mt-10">
+
+        <section class="mt-8">
             <h2 class="text-gray-700 text-3xl">Authentication</h2>
             <p class="text-gray-700">Festivos API is completely open. No auth is required, ever. You just can GET the data, no other HTTP headers are admitted 😉. If you find a mistake in the data we provide do not hesitate to contact us.</p>
         </section>
-        <section class="mt-10">
+
+        <section class="mt-8">
             <h2 class="text-gray-700 text-3xl">Base URL</h2>
             <p class="text-gray-700">The Base URL is the root url for all of the api calls. <br>This documentation assumes you are prepending the Base URL to tge endpoints to make requests.</p>
             <div class="bg-gray-300 rounded-md mt-4">
                 <p class="text-gray-700 p-4 break-words">https://festivosapi.dev/api/</p>
             </div>
+        </section>
+
+        <!--RESOURCES-->
+        <section class="mt-12">
+            <h2 class="text-gray-700 text-4xl font-bold">Resources</h2>
+            <h2 class="text-gray-700 text-3xl mt-2">Municipios</h2>
+            <p class="text-gray-700">A municipio is an individual municipality in spain.</p>
+            <h3 class="text-gray-700 text-2xl mt-2">Endpoints</h3>
+            <ul class="list-disc list-inside mt-2 text-gray-700">
+                <li><span class="bg-gray-300 p-2 rounded-md">/municipios/</span>- get all municipios</li>
+                <li class="mt-5"><span class="bg-gray-300 p-2 rounded-md">/municipios/:name</span> - holidays of :name</li>
+                <li class="mt-5"><span class="bg-gray-300 p-2 rounded-md">/municipios/:name/:date</span> - next holiday of :name starting at :date</li>
+            </ul>
+            <p class="text-gray-700 font-bold mt-4">Example:</p>
+            <div class="bg-gray-300 rounded-md mt-2">
+                <p class="text-gray-700 p-4 break-words"><span class="text-red-300">curl</span> https://festivosapi.dev/api/municipios/barcelona/2020-08-20</p>
+            </div>
+            <p class="text-gray-700 mt-4 font-bold">Response:</p>
+            <pre class="mt-2 pt-2 pl-2 pb-2 overflow-y-scroll bg-gray-300 text-gray-700">
+{
+  "nextHoliday": "2020-09-11T00:00"
+}</pre>
+        </section>
+        <section class="mt-8">
+            <h2 class="text-gray-700 text-3xl">Dates</h2>
+            <p class="text-gray-700">A date returns all the municipalities where that date is a holiday.</p>
+            <h3 class="text-gray-700 text-2xl mt-2">Endpoints</h3>
+            <ul class="list-disc list-inside mt-2 text-gray-700">
+                <li><span class="bg-gray-300 p-2 rounded-md">/dates/</span>- get all dates with municipalities</li>
+                <li class="mt-5"><span class="bg-gray-300 p-2 rounded-md">/municipios/:date</span> - municipalities where :date is a holiday</li>
+            </ul>
+            <p class="text-gray-700 font-bold mt-4">Example:</p>
+            <div class="bg-gray-300 rounded-md mt-2">
+                <p class="text-gray-700 p-4 break-words"><span class="text-red-300">curl</span> https://festivosapi.dev/api/dates/2020-12-30</p>
+            </div>
+            <p class="text-gray-700 mt-4 font-bold">Response:</p>
+            <pre class="mt-2 pt-2 pl-2 pb-2 overflow-y-scroll overflow-x-scroll bg-gray-300 text-gray-700">
+{
+  "holidayIn": [
+    "barrios de luna",
+    "villamantilla",
+    "elcoaz (urraul alto)",
+    "endériz (olaibar)",
+    "erro",
+    "gorraiz"
+  ]
+}</pre>
         </section>
     </main>
 </body>
